@@ -1,7 +1,7 @@
 {
   "name": "pug.js",
-  "version": "0.0.0",
-  "description": "A small un-opinionated model framework",
+  "version": "1.0.0",
+  "description": "A small model framework",
   "main": "lib/pug.js",
   "scripts": {
     "test": "node_modules/.bin/jasmine-node spec/"
@@ -9,8 +9,7 @@
   "author": "Everyday Hero",
   "license": "ISC",
   "dependencies": {
-    "es6-promise": "^1.0.0",
-    "validate.js": "^0.2.0"
+    "es6-promise": "^1.0.0"
   },
   "devDependencies": {
     "jasmine-node": "1.14.2"

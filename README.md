@@ -1,20 +1,13 @@
 ```javascript
 var pug = new Pug(),
-    Charity = pug.schema('charity', {
-      validations: {
-        name: {
-          presence: true,
-          length: {max: 30}
-        }
-      }
-    });
+    Charity = pug.schema('charity');
 
 Charity.find(1).then(function(charity) {
   charity.get('name'); // Foobar
   charity.set('name', 'Crikey');
   charity.id(); // 1
   charity.save().then(function(charity) {
-    
+
   });
 });
 
