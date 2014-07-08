@@ -1,23 +1,8 @@
 ```javascript
 var pug = new Pug(),
-    Charity = pug.resource('charity', {
-      attributes: {
-        name: 'string',
-        createdAt: 'date',
-        active: 'boolean',
-        campaigns: 'hasMany'
-      },
+    Charity = pug.schema('charity', {
       validations: {
         name: {
-          presence: true,
-          length: {max: 30}
-        }
-      },
-
-
-      attributes: {
-        name: {
-          type: 'string',
           presence: true,
           length: {max: 30}
         }
@@ -25,11 +10,17 @@ var pug = new Pug(),
     });
 
 Charity.find(1).then(function(charity) {
-  charity.get('name');
-  charity.save().then(function() {
-
+  charity.get('name'); // Foobar
+  charity.set('name', 'Crikey');
+  charity.id(); // 1
+  charity.save().then(function(charity) {
+    
   });
 });
 
-Charity.save({name: 'foo'}).then()
+Charity.findAll().then(function(charities) {
+  var objects = charities.map(function(charity) {
+    return charity.getAll(); // {id: 1, name: 'Crikey'}
+  });
+});
 ```
