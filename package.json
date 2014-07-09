@@ -4,14 +4,19 @@
   "description": "A small model framework",
   "main": "lib/pug.js",
   "scripts": {
-    "test": "node_modules/.bin/jasmine-node spec/"
+    "test": "node_modules/.bin/jasmine-node spec/",
+    "build": "mkdir -p dist; node_modules/.bin/browserify -o dist/pug.js -r ./lib/utils/asap.js:asap lib/pug.js; node_modules/.bin/uglifyjs -cm --stats dist/pug.js > dist/pug.min.js",
+    "clean": "rm -R dist"
   },
   "author": "Everyday Hero",
   "license": "ISC",
   "dependencies": {
+    "asap": "^1.0.0",
     "es6-promise": "^1.0.0"
   },
   "devDependencies": {
-    "jasmine-node": "1.14.2"
+    "browserify": "^4.2.0",
+    "jasmine-node": "1.14.2",
+    "uglify-js": "^2.4.14"
   }
 }
