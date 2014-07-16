@@ -1,6 +1,7 @@
+var Promise = require('es6-promise').Promise;
+
 var Resource = require('../lib/resource'),
-    Repository = require('../lib/repository'),
-    Promise = require('../lib/promise');
+    Repository = require('../lib/repository');
 
 describe("instantiating a new resource", function() {
   var resource;

@@ -1,5 +1,6 @@
-var Repository = require('../lib/repository'),
-    Promise = require('../lib/promise');
+var Promise = require('es6-promise').Promise
+
+var Repository = require('../lib/repository');
 
 describe("finding an item", function() {
   var repository;

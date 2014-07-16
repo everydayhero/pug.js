@@ -1,6 +1,6 @@
 {
   "name": "pug.js",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "A small model framework",
   "main": "lib/pug.js",
   "scripts": {
@@ -11,7 +11,6 @@
   "author": "Everyday Hero",
   "license": "ISC",
   "dependencies": {
-    "asap": "^1.0.0",
     "es6-promise": "^1.0.0"
   },
   "devDependencies": {

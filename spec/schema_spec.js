@@ -1,6 +1,7 @@
+var Promise = require('es6-promise').Promise;
+
 var Schema = require('../lib/schema'),
-    Model = require('../lib/model'),
-    Promise = require('../lib/promise');
+    Model = require('../lib/model');
 
 describe("instantiating a new schema", function() {
   var schema;
