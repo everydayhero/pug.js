@@ -3,6 +3,8 @@ var Promise = require('es6-promise').Promise;
 var Schema = require('../lib/schema'),
     Model = require('../lib/model');
 
+function K() {};
+
 describe("instantiating a new schema", function() {
   var schema;
 
@@ -112,7 +114,37 @@ describe("creating a model", function() {
   });
 
   it("should emit a created event", function(done) {
+    schema.on('created', function(eventedModel) {
+      expect(eventedModel).toBe(model);
+      done();
+    });
+    schema.create(model);
+  });
+
+  it("should emit a created event on the model", function(done) {
     model.on('created', function() {
+      done();
+    });
+    schema.create(model);
+  });
+
+  it("should emit an error upon failure", function(done) {
+    schema.resource.repository.objects.test = {1: {}};
+
+    schema.on('error', function(eventedModel, error) {
+      expect(eventedModel).toBe(model);
+      expect(error);
+      done();
+    });
+    model.on('error', K);
+    schema.create(model);
+  });
+
+  it("should emit an error upon failure on the model", function(done) {
+    schema.resource.repository.objects.test = {1: {}};
+
+    model.on('error', function(error) {
+      expect(error);
       done();
     });
     schema.create(model);
@@ -147,7 +179,37 @@ describe("updating a model", function() {
   });
 
   it("should emit a updated event", function(done) {
+    schema.on('updated', function(eventedModel) {
+      expect(eventedModel).toBe(model);
+      done();
+    });
+    schema.update(model);
+  });
+
+  it("should emit a updated event on the model", function(done) {
     model.on('updated', function() {
+      done();
+    });
+    schema.update(model);
+  });
+
+  it("should emit an error upon failure", function(done) {
+    schema.resource.repository.objects.test = {};
+
+    schema.on('error', function(eventedModel, error) {
+      expect(eventedModel).toBe(model);
+      expect(error);
+      done();
+    });
+    model.on('error', K);
+    schema.update(model);
+  });
+
+  it("should emit an error upon failure on the model", function(done) {
+    schema.resource.repository.objects.test = {};
+
+    model.on('error', function(error) {
+      expect(error);
       done();
     });
     schema.update(model);
@@ -158,9 +220,10 @@ describe("destroying a model", function() {
   var schema, model;
 
   beforeEach(function() {
+    var object = {id: 1, foo: 'bar'};
     schema = new Schema('test');
-    model = schema.new({foo: 'bar'});
-    model.save();
+    schema.resource.repository.objects.test = {1: object};
+    model = schema.new(object);
   });
 
   it("should return a promise", function() {
@@ -182,7 +245,37 @@ describe("destroying a model", function() {
   });
 
   it("should emit a destroyed event", function(done) {
+    schema.on('destroyed', function(eventedModel) {
+      expect(eventedModel).toBe(model);
+      done();
+    });
+    schema.destroy(model);
+  });
+
+  it("should emit a destroyed event on the model", function(done) {
     model.on('destroyed', function() {
+      done();
+    });
+    schema.destroy(model);
+  });
+
+  it("should emit an error upon failure", function(done) {
+    schema.resource.repository.objects.test = {};
+
+    schema.on('error', function(eventedModel, error) {
+      expect(eventedModel).toBe(model);
+      expect(error);
+      done();
+    });
+    model.on('error', K);
+    schema.destroy(model);
+  });
+
+  it("should emit an error upon failure on the model", function(done) {
+    schema.resource.repository.objects.test = {};
+
+    model.on('error', function(error) {
+      expect(error);
       done();
     });
     schema.destroy(model);
