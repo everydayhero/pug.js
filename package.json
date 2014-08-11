@@ -1,6 +1,6 @@
 {
   "name": "pug.js",
-  "version": "1.2.2",
+  "version": "1.2.3",
   "description": "A small model framework",
   "main": "lib/pug.js",
   "scripts": {
