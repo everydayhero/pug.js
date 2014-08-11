@@ -159,32 +159,3 @@ describe("destroying a model", function() {
   });
 });
 
-describe("comparing models", function() {
-  var schema;
-
-  beforeEach(function() {
-    schema = new Schema('test');
-  });
-
-  it("should return true when two models have the same id", function() {
-    var model1 = schema.new({id: 1}),
-        model2 = schema.new({id: 1});
-
-    expect(model2).toEqual(model1);
-  });
-
-  it("should return false when two models have different ids", function() {
-    var model1 = schema.new({id: 1}),
-        model2 = schema.new({id: 2});
-
-    expect(model2).not.toEqual(model1);
-  });
-
-  it("should return false when two models have the same id but of different type", function() {
-    var otherSchema = new Schema('other'),
-        model1 = schema.new({id: 1}),
-        model2 = otherSchema.new({id: 1});
-
-    expect(model2).not.toEqual(model1);
-  });
-});
