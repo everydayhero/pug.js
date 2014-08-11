@@ -140,6 +140,15 @@ describe("creating a model", function() {
     schema.create(model);
   });
 
+  it("should reject the promise upon failure", function(done) {
+    schema.resource.repository.objects.test = {1: {}};
+
+    schema.create(model).catch(function(error) {
+      expect(error);
+      done();
+    });
+  });
+
   it("should emit an error upon failure on the model", function(done) {
     schema.resource.repository.objects.test = {1: {}};
 
@@ -203,6 +212,15 @@ describe("updating a model", function() {
     });
     model.on('error', K);
     schema.update(model);
+  });
+
+  it("should reject the promise upon failure", function(done) {
+    schema.resource.repository.objects.test = {};
+
+    schema.update(model).catch(function(error) {
+      expect(error);
+      done();
+    });
   });
 
   it("should emit an error upon failure on the model", function(done) {
@@ -269,6 +287,15 @@ describe("destroying a model", function() {
     });
     model.on('error', K);
     schema.destroy(model);
+  });
+
+  it("should reject the promise upon failure", function(done) {
+    schema.resource.repository.objects.test = {};
+
+    schema.destroy(model).catch(function(error) {
+      expect(error);
+      done();
+    });
   });
 
   it("should emit an error upon failure on the model", function(done) {
