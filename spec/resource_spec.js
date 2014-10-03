@@ -49,7 +49,7 @@ describe("finding an item", function() {
   it("should call the repository with the resource name and given key", function() {
     resource.find(object.key);
 
-    expect(repository.find).toHaveBeenCalledWith('test', object.key);
+    expect(repository.find).toHaveBeenCalledWith('test', object.key, undefined);
   });
 
   it("should return a promise which contains the object when resolved", function(done) {
@@ -75,7 +75,7 @@ describe("finding items", function() {
   it("should call the repository with the resource name and given query", function() {
     resource.findAll(query);
 
-    expect(repository.findAll).toHaveBeenCalledWith('test', query);
+    expect(repository.findAll).toHaveBeenCalledWith('test', query, undefined);
   });
 
   it("should return a promise which contains a collection of results when resolved", function(done) {
